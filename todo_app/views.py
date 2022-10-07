@@ -27,8 +27,8 @@ class ItemListView(ListView):
         context["todo_list"] = ToDoList.objects.get(id=self.kwargs["list_id"])
         return context
 
-    class ListCreate(CreateView):
-        model = ToDoList
+class ListCreate(CreateView):
+    model = ToDoList
     fields = ["title"]
 
     def get_context_data(self):
