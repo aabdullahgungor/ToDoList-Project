@@ -29,6 +29,7 @@ class ItemListView(ListView):
 
 class ListCreate(CreateView):
     model = ToDoList
+    template_name = "todo_app/todolist_form.html"
     fields = ["title"]
 
     def get_context_data(self):
@@ -38,6 +39,7 @@ class ListCreate(CreateView):
 
 class ItemCreate(CreateView):
     model = ToDoItem
+    template_name = "todo_app/todoitem_form.html"
     fields = [
         "todo_list",
         "title",
@@ -63,6 +65,7 @@ class ItemCreate(CreateView):
 
 class ItemUpdate(UpdateView):
     model = ToDoItem
+    template_name = "todo_app/todoitem_form.html"
     fields = [
         "todo_list",
         "title",
@@ -82,12 +85,14 @@ class ItemUpdate(UpdateView):
     # todo_list/todo_app/views.py
 class ListDelete(DeleteView):
     model = ToDoList
+    template_name = "todo_app/todolist_confirm_delete.html"
     # You have to use reverse_lazy() instead of reverse(),
     # as the urls are not loaded when the file is imported.
     success_url = reverse_lazy("index")
 
 class ItemDelete(DeleteView):
     model = ToDoItem
+    template_name = "todo_app/todoitem_confirm_delete.html"
 
     def get_success_url(self):
         return reverse_lazy("list", args=[self.kwargs["list_id"]])
